@@ -8,7 +8,6 @@ export async function GET() {
 
         const productos = await collection.find({}).toArray();
 
-        // Convertir _id a string para evitar problemas de serialización
         const productosSerializados = productos.map(({ _id, ...rest }) => ({
         ...rest,
         id: _id.toString(),
