@@ -44,7 +44,6 @@ export default function Filters({
           </div>
         </label>
 
-        {/* % mínimo */}
         <label className="text-xs text-slate-500 flex flex-col gap-1">
           Descuento mín. (%)
           <input
@@ -55,7 +54,7 @@ export default function Filters({
           />
         </label>
 
-        {/* Orden */}
+
         <label className="text-xs text-slate-500 flex flex-col gap-1">
           Ordenar por
           <select

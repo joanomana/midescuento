@@ -15,14 +15,7 @@ export default function ProductCard({ producto }) {
 
   return (
     <article className="group relative rounded-2xl bg-white border shadow-sm hover:shadow-md transition-shadow flex flex-col">
-      {/* badge */}
-      {pDesc > 0 && (
-        <div className="absolute left-3 top-3 z-10 rounded-full bg-green-600 text-white text-xs font-semibold px-2 py-1 shadow-sm">
-          -{pDesc}%
-        </div>
-      )}
 
-      {/* imagen */}
       <div className="aspect-[4/3] overflow-hidden rounded-t-2xl bg-slate-100 grid place-content-center">
         {imagen ? (
           <img
@@ -36,34 +29,38 @@ export default function ProductCard({ producto }) {
         )}
       </div>
 
-      {/* contenido */}
+
       <div className="p-4 flex flex-col flex-1">
         <div className="text-[11px] uppercase tracking-wide text-slate-500 mb-1">{categoria}</div>
 
-        {/* bloque con alto fijo para alinear */}
+
         <div className="flex-1 flex flex-col justify-start min-h-[5.5rem]">
           <h3 className="font-semibold text-slate-900 line-clamp-2">{titulo}</h3>
           {marca && <div className="text-sm text-slate-600 mt-0.5">{marca}</div>}
         </div>
 
-        {/* precios */}
         <div className="mt-3 space-y-0.5">
           {pOrig && (
-            <div className="text-sm text-slate-400">
+            <div className="text-sm text-slate-400 flex items-center gap-2">
               <s>{formatCOP(pOrig)}</s>
+              {pDesc > 0 && (
+                <span className="rounded-full bg-red-500 text-white text-xs font-semibold px-2 py-0.5">
+                  -{pDesc}%
+                </span>
+              )}
             </div>
           )}
+
           {pFinal != null && (
             <div className="text-emerald-700 font-semibold text-lg">
               {formatCOP(pFinal)}
             </div>
           )}
+
           {precioAliado && (
             <div className="text-blue-600 text-sm">Aliado: {precioAliado}</div>
           )}
         </div>
-
-        {/* footer */}
         <div className="mt-auto pt-4 flex flex-col items-center justify-between gap-5">
           <a
             href={enlace}
