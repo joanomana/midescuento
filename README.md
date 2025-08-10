@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Descuentos App
+## Aplicación web para visualizar, filtrar y explorar productos con grandes descuentos obtenidos desde el scraper de Éxito y otras fuentes.
+Los datos se almacenan en MongoDB y se consultan en tiempo real para mostrar siempre los precios más recientes.
 
-## Getting Started
+## 📌 Características
+- Listado en tiempo real de productos con descuentos.
 
-First, run the development server:
+- Filtros avanzados:
 
+  - Por categoría
+
+  - Por porcentaje mínimo de descuento
+
+  - Por texto (nombre, marca, categoría)
+
+  - Ordenar por precio o por descuento
+
+- Visualización clara:
+
+  - Precio original tachado
+
+  - Precio con descuento resaltado
+  
+  - Porcentaje de descuento al lado del precio original
+  
+  - Precio de aliado (si aplica)
+  
+  - Imagen del producto
+
+- Enlace directo al producto en la tienda original.
+
+## 🛠️ Tecnologías usadas
+- Frontend: Next.js + React
+
+- Estilos: Tailwind CSS
+
+- Base de datos: MongoDB (MongoDB Atlas)
+
+- API interna: Next.js Route Handlers para consumir la base de datos
+
+- Scraper: Node.js + Puppeteer (repositorio separado)
+
+## 📂 Estructura del proyecto
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+/src
+  /app
+    /api
+      /descuentos    → Endpoints para consumir la base de datos
+    /page.js         → Página principal con filtros y listado
+  /components        → Componentes reutilizables (tarjeta de producto, filtros, etc.)
+  /lib/mongodb.js    → Conexión a MongoDB
 ```
+## 🚀 Instalación y uso
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Instalar dependencias
+``` bash
+npm install
+```
+### 2. Configurar variables de entorno
+Crea un archivo .env.local con el siguiente contenido:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+``` env
+MONGODB_URI="mongodb+srv://usuario:password@cluster.mongodb.net/Descuentos"
+```
+### 3. Ejecutar en desarrollo
+``` bash
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run dev
+```
+La aplicación estará disponible en:
 
-## Learn More
+``` arduino
 
-To learn more about Next.js, take a look at the following resources:
+http://localhost:3000
+```
+## 🤖 Scraper
+El scraper que alimenta esta aplicación está en un repositorio separado:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[🔗 Repositorio del Scraper](https://github.com/joanomana/exito_descuentos)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### El scraper:
 
-## Deploy on Vercel
+- Obtiene productos y descuentos de diferentes categorías
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Guarda los datos en MongoDB
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Se puede ejecutar de forma periódica con Docker o en un servidor
